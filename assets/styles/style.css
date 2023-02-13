@@ -1,3 +1,14 @@
-.nav-pills>.nav-link.active{
+.active{
     background-color: #df1573 !important;
+}
+.btn{
+    background-color: #df1573 !important;
+}
+
+.card{
+    box-shadow: 1px 5px 6px rgb(12, 11, 11,0.2);
+}
+
+.card:hover{
+    transform: scale(1.1);
 }
