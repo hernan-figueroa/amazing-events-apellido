@@ -1,14 +1,14 @@
 .active,
 .btn-pink {
-    background-color: #df1573 !important;
-    font-weight: bold !important;
-    color: white !important;
+  background-color: #df1573 !important;
+  font-weight: bold !important;
+  color: white !important;
 }
 
 .card {
-    background: rgb(248, 245, 245,0.5) !important;
-    box-shadow: 1px 5px 6px rgb(12, 11, 11, 0.2);
-    border: none !important;
+  background: rgb(248, 245, 245, 0.5) !important;
+  box-shadow: 1px 5px 6px rgb(12, 11, 11, 0.2);
+  border: none !important;
 }
 
 .card:hover {
@@ -31,7 +31,7 @@ main {
   background-size: cover;
 }
 
-form > div{
+form > div {
   box-shadow: 1px 1px 6px rgb(12, 11, 11, 0.5),
     -15px -5px 6px rgb(12, 11, 11, 0.3);
   backdrop-filter: saturate(120%) blur(10px);
@@ -41,10 +41,15 @@ footer {
   height: 100px;
 }
 
-.search-area{
-    background: rgba(248, 245, 245,0.5) !important;
+.search-area {
+  background: rgba(248, 245, 245, 0.5) !important;
 }
 
-.details{
-    height: 300px !important;
+.details {
+  height: 300px !important;
+}
+
+table{
+  box-shadow: 1px 6px 6px rgb(12, 11, 11, 0.5),
+  -1px -2px 20px rgb(12, 11, 11, 0.5);
 }
