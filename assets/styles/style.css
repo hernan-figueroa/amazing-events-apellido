@@ -53,3 +53,7 @@ table{
   box-shadow: 1px 6px 6px rgb(12, 11, 11, 0.5),
   -1px -2px 20px rgb(12, 11, 11, 0.5);
 }
+
+.table{
+  margin-bottom: 0px !important;
+}
