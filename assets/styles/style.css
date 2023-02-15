@@ -16,8 +16,16 @@
   box-shadow: 1px 10px 6px rgb(12, 11, 11, 0.5);
 }
 
-section h1 {
-  height: 100px;
+.carrusel {
+  box-shadow: 0px 5px 6px rgb(12, 11, 11, 0.7);
+}
+
+.arrow{
+  font-size: 80px !important;
+}
+
+.text-dark:hover{
+  font-weight: bold !important;
 }
 
 textarea {
