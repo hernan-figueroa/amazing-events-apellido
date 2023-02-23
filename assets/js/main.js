@@ -173,16 +173,45 @@ const data = {
 }
 
 
-let cardEvent = document.getElementById("btn1");
+let cardsList = document.getElementById("cardsList");
 
-let detailImg = document.getElementById("detail-img");
 
-cardEvent.onclick = function () {
-    let card = document.getElementById("card1");
-    let cardImg = document.getElementById("card-img").src;
-    console.log(cardImg);
+let card = document.createElement("div");
+card.className = "row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-4 mt-5 mx-3 text-center"
 
-    // detailImg.src = "./assets/img/Music_Concert.jpg";
-    // let textoP = card.querySelector(".card-text");
-    // console.log(textoP.innerText);
+let allCards = "";
+
+for (const key of data.events) {
+    console.log(key.description);
+    allCards += ` <div class="col">
+<div id="card1" class="card h-100">
+    <img class="card-img" src="./assets/img/Music_Concert.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">${key.name}</h5>
+        <p class="card-text">${key.description}</p>
+    </div>
+    <div class="card-footer d-inline-flex justify-content-around">
+        <div class="d-flex align-items-center">
+            <span>Price: $${key.price}</span>
+        </div>
+
+        <button id="btn1" type="button" class="btn btn-pink text-white"><a class="text-decoration-none text-white" href="./details.html">Details</a></button>
+    </div>
+</div>
+</div>`;
 }
+
+card.innerHTML = allCards;
+
+
+cardsList.appendChild(card);
+
+// cardEvent.onclick = function () {
+//     let card = document.getElementById("card1");
+//     let cardImg = document.getElementById("card-img").src;
+//     console.log(cardImg);
+
+//     // detailImg.src = "./assets/img/Music_Concert.jpg";
+//     // let textoP = card.querySelector(".card-text");
+//     // console.log(textoP.innerText);
+// }
