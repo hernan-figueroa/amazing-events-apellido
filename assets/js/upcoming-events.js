@@ -471,7 +471,7 @@ function createCards(data) {
                                         <div class="d-flex align-items-center">
                                             <span>Price: $${event.price}</span>
                                         </div>
-                                        <button id="btn1" type="button" class="btn btn-pink text-white"><a class="text-decoration-none text-white" href="./details.html">Details</a></button>
+                                        <a class="btn btn-pink btn-details text-white" href="./details.html">More info</a>
                                     </div>
                                 </div>
                         </div>`;
