@@ -469,7 +469,7 @@ function createCards(data) {
                                     </div>
                                     <div class="card-footer d-inline-flex justify-content-around">
                                         <div class="d-flex align-items-center">
-                                            <span>Price: $${event.price}</span>
+                                            <span><i class="bi bi-tag-fill"></i> Price: $${event.price}</span>
                                         </div>
                                         <a class="btn btn-pink btn-details text-white" href="./details.html">More info</a>
                                     </div>

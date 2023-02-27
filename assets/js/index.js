@@ -448,12 +448,46 @@ const data = {
     ]
 }
 
+const allEvents = data.events;
+
 let cardsList = document.getElementById("cardsList");
+
+let btnSearch = document.getElementById("searchBtn");
+
+btnSearch.addEventListener("click", function(){
+    let wordSearch = document.getElementById("search-content");
+    let checkboxs = document.getElementsByClassName("form-check-input");
+
+    console.log(checkCategoriesList(checkboxs));
+    
+    if(wordSearch.value !=""){
+        cardsList.innerHTML = createCards(filterCardsByName(wordSearch.value));
+    }else{
+        cardsList.innerHTML = createCards(allEvents);
+    }
+
+})
+
+function checkCategoriesList(checkboxs){
+    let categories=[];
+    for (const item of checkboxs) {
+        if(item.checked){
+            categories.push(item.labels[0].textContent);
+        }
+    }
+    return categories;
+}
+
+function filterCardsByName(name){
+    let cardsFiltered = allEvents.filter(event => event.name.toLowerCase() === name.toLowerCase());
+    console.log(cardsFiltered);
+    return cardsFiltered;
+}
 
 function createCards(data) {
     let allCards = "";
 
-    for (const event of data.events) {
+    for (const event of data) {
 
         allCards += ` <div class="col">
                             <div id="card1" class="card h-100">
@@ -465,7 +499,7 @@ function createCards(data) {
                                 </div>
                                 <div class="card-footer d-inline-flex justify-content-around">
                                     <div class="d-flex align-items-center">
-                                        <span>Price: $${event.price}</span>
+                                        <span><i class="bi bi-tag-fill"></i> Price: $${event.price}</span>
                                     </div>
                                     <a class="btn btn-pink btn-details text-white" href="./details.html">More info</a>
                                 </div>
@@ -476,7 +510,5 @@ function createCards(data) {
 
 }
 
-
-
-cardsList.innerHTML = createCards(data);
+cardsList.innerHTML = createCards(allEvents);
 
