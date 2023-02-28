@@ -452,20 +452,26 @@ const allEvents = data.events;
 
 let cardsList = document.getElementById("cardsList");
 
+
+
+
 let btnSearch = document.getElementById("searchBtn");
 
-btnSearch.addEventListener("click", function(){
+btnSearch.addEventListener("click", ()=>{
     let wordSearch = document.getElementById("search-content");
     let checkboxs = document.getElementsByClassName("form-check-input");
+    let filterCards = [];
 
-    console.log(checkCategoriesList(checkboxs));
+    const arrayCategories = checkCategoriesList(checkboxs);
     
     if(wordSearch.value !=""){
-        cardsList.innerHTML = createCards(filterCardsByName(wordSearch.value));
+        cardsList.innerHTML=createCards(filterCardsByName(wordSearch.value));
+        // if(arrayCategories.length > 0){
+        //     filterCards = filterCardsByNameAndCategories(wordSearch , arrayCategories);
+        // }
     }else{
         cardsList.innerHTML = createCards(allEvents);
     }
-
 })
 
 function checkCategoriesList(checkboxs){
@@ -478,17 +484,23 @@ function checkCategoriesList(checkboxs){
     return categories;
 }
 
-function filterCardsByName(name){
+function filterCardsByNameAndCategories(name , arrayCategories){
     let cardsFiltered = allEvents.filter(event => event.name.toLowerCase() === name.toLowerCase());
     console.log(cardsFiltered);
     return cardsFiltered;
 }
 
+function filterCardsByName(name){
+    let cardsFiltered = allEvents.filter(event => event.name.toLowerCase().indexOf(name.trim().toLowerCase())!=-1);
+    console.log(cardsFiltered);
+    return cardsFiltered;
+}
+
+
+//Funcion que renderiza en tarjetas cada dato enviado
 function createCards(data) {
     let allCards = "";
-
     for (const event of data) {
-
         allCards += ` <div class="col">
                             <div id="card1" class="card h-100">
                                 <img class="card-img" src="${event.image}" class="card-img-top" alt="...">
@@ -509,6 +521,7 @@ function createCards(data) {
     return allCards;
 
 }
-
+//Muestra todas las tarjetas al cargar la pagina
 cardsList.innerHTML = createCards(allEvents);
+
 

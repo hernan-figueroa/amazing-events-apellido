@@ -11,6 +11,14 @@
   border: none !important;
 }
 
+.card-img{
+  height: 180px !important;
+  object-fit: cover;
+  object-position: 50 0 !important;
+}
+
+
+
 .card:hover {
   transform: scale(1.05);
   box-shadow: 1px 10px 6px rgb(12, 11, 11, 0.5);
@@ -66,4 +74,11 @@ table{
   transform: scale(1.05);
   box-shadow: 1px 5px 6px rgb(12, 11, 11, 0.5);
   border: 1px solid white;
+}
+
+
+@media screen and (max-width: 768px) {
+  .card-img{
+    height: 300px !important;
+  }
 }
