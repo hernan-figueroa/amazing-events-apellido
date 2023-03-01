@@ -462,8 +462,12 @@ let categoriesCheckBox = document.getElementById("categoryList");
 
 categoriesCheckBox.addEventListener("click", function(){
     const arrayCategories = checkedCategoriesList(checkboxs);
-    console.log(arrayCategories);
-    filterCardsByCategories(arrayCategories)
+    if(arrayCategories.length > 0){
+        cardsList.innerHTML = createCards(filterCardsByCategories(arrayCategories))
+    }else{
+        cardsList.innerHTML = createCards(allEvents);
+    }
+    
 })
 
 
@@ -523,7 +527,6 @@ function checkedCategoriesList(checkboxs) {
 function filterCardsByCategories(arrayCategories) {
 
     let cardsFiltered = allEvents.filter(event => arrayCategories.includes(event.category));
-    console.log(cardsFiltered);
     return cardsFiltered;
 }
 
