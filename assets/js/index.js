@@ -450,48 +450,85 @@ const data = {
 
 const allEvents = data.events;
 
+
 let cardsList = document.getElementById("cardsList");
-
-
-
 
 let btnSearch = document.getElementById("searchBtn");
 
-btnSearch.addEventListener("click", ()=>{
-    let wordSearch = document.getElementById("search-content");
-    let checkboxs = document.getElementsByClassName("form-check-input");
-    let filterCards = [];
+let checkboxs = document.getElementsByClassName("form-check-input");
 
-    const arrayCategories = checkCategoriesList(checkboxs);
-    
-    if(wordSearch.value !=""){
-        cardsList.innerHTML=createCards(filterCardsByName(wordSearch.value));
+let categoriesCheckBox = document.getElementById("categoryList");
+
+
+categoriesCheckBox.addEventListener("click", function(){
+    const arrayCategories = checkedCategoriesList(checkboxs);
+    console.log(arrayCategories);
+    filterCardsByCategories(arrayCategories)
+})
+
+
+categoriesCheckBox.innerHTML = createCategoriesCheckBox(categoryList(allEvents));
+
+function createCategoriesCheckBox(categories) {
+    let checkboxsHtml = "";
+    let num=1;
+    for (const category of categories) {
+        checkboxsHtml += `<div>
+                            <input class="form-check-input" type="checkbox" name="category1" id="category${num}">
+                            <label for="category${num}">${category}</label>
+                            </div>`
+        num++;
+    }
+
+    return checkboxsHtml;
+}
+
+function categoryList(events) {
+    let categories = [];
+    for (const item of events) {
+        if (!categories.some((category) => category == item.category)) {
+            categories.push(item.category);
+        }
+    }
+    return categories;
+}
+
+
+btnSearch.addEventListener("click", () => {
+    let wordSearch = document.getElementById("search-content");
+    let filterCards = ``;
+
+    if (wordSearch.value != "") {
+        filterCards = createCards(filterCardsByName(wordSearch.value));
         // if(arrayCategories.length > 0){
         //     filterCards = filterCardsByNameAndCategories(wordSearch , arrayCategories);
         // }
-    }else{
+    } else {
         cardsList.innerHTML = createCards(allEvents);
     }
+    cardsList.innerHTML = filterCards;
+
 })
 
-function checkCategoriesList(checkboxs){
-    let categories=[];
+function checkedCategoriesList(checkboxs) {
+    let categories = [];
     for (const item of checkboxs) {
-        if(item.checked){
+        if (item.checked) {
             categories.push(item.labels[0].textContent);
         }
     }
     return categories;
 }
 
-function filterCardsByNameAndCategories(name , arrayCategories){
-    let cardsFiltered = allEvents.filter(event => event.name.toLowerCase() === name.toLowerCase());
+function filterCardsByCategories(arrayCategories) {
+
+    let cardsFiltered = allEvents.filter(event => arrayCategories.includes(event.category));
     console.log(cardsFiltered);
     return cardsFiltered;
 }
 
-function filterCardsByName(name){
-    let cardsFiltered = allEvents.filter(event => event.name.toLowerCase().indexOf(name.trim().toLowerCase())!=-1);
+function filterCardsByName(name) {
+    let cardsFiltered = allEvents.filter(event => event.name.toLowerCase().indexOf(name.trim().toLowerCase()) != -1);
     console.log(cardsFiltered);
     return cardsFiltered;
 }

@@ -47,7 +47,7 @@ main {
   background-size: cover;
 }
 
-form > div {
+#contactForm>div{
   box-shadow: 1px 1px 6px rgb(12, 11, 11, 0.5),
     -15px -5px 6px rgb(12, 11, 11, 0.3);
   backdrop-filter: saturate(120%) blur(10px);
