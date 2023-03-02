@@ -37,9 +37,9 @@ function createCategoriesCheckBox(categories) {
 
 function categoryList(events) {
     let categories = [];
-    for (const item of events) {
-        if (!categories.some((category) => category == item.category)) {
-            categories.push(item.category);
+    for (const event of events) {
+        if (!categories.some((category) => category == event.category)) {
+            categories.push(event.category);
         }
     }
     return categories;
@@ -104,3 +104,14 @@ function createCards(data) {
 }
 //Muestra todas las tarjetas al cargar la pagina
 cardsList.innerHTML = createCards(allEvents);
+
+
+
+
+const arrayTest = [{nombre: 'hernan', apellido: 'figueroa'},{nombre: 'fabi', apellido: 'fabi'},{nombre: 'guille', apellido: 'guille'},{nombre: 'hernan', apellido: 'figueroa'}];
+                // 0 1 2 3 4
+
+const resultado = arrayTest.filter((item,index) => arrayTest.indexOf(item) === index);
+                                //item={nombre: 'hernan', apellido: 'figueroa'} index=0   arrayTest.indexOf(item)=0  == index=0
+                                //item=1 index=1   arrayTest.indexOf(item)=0  != index=1
+console.log(resultado);                                
