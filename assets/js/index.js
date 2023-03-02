@@ -15,9 +15,9 @@ categoriesCheckBox.addEventListener("click", function () {
     const wordSearch = document.getElementById("search-content");
     const arrayCategories = checkedCategoriesList(checkboxs);
     if (arrayCategories.length > 0) {
-        cardsList.innerHTML = (wordSearch.value != "")? createCards(filterCardsByCategories(arrayCategories,cardsFiltered)) :createCards(filterCardsByCategories(arrayCategories,allEvents))
+        cardsList.innerHTML = (wordSearch.value != "") ? createCards(filterCardsByCategories(arrayCategories, cardsFiltered)) : createCards(filterCardsByCategories(arrayCategories, allEvents))
     } else {
-        cardsList.innerHTML = (wordSearch.value != "")? createCards(filterCardsByName(wordSearch.value, allEvents)):createCards(allEvents);
+        cardsList.innerHTML = (wordSearch.value != "") ? createCards(filterCardsByName(wordSearch.value, allEvents)) : createCards(allEvents);
     }
 })
 
@@ -53,7 +53,7 @@ btnSearch.addEventListener("click", () => {
         let filterCards = (arrayCategories.length > 0) ? createCards(filterCardsByName(wordSearch.value, cardsFiltered)) : createCards(filterCardsByName(wordSearch.value, allEvents));
         cardsList.innerHTML = filterCards;
     } else {
-        cardsList.innerHTML = (arrayCategories.length > 0)?createCards(filterCardsByCategories(arrayCategories,allEvents)) :createCards(allEvents);
+        cardsList.innerHTML = (arrayCategories.length > 0) ? createCards(filterCardsByCategories(arrayCategories, allEvents)) : createCards(allEvents);
     }
 })
 
