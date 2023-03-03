@@ -14,7 +14,6 @@
 .card-img{
   height: 180px !important;
   object-fit: cover;
-  object-position: 50 0 !important;
 }
 
 
@@ -80,5 +79,5 @@ table{
 @media screen and (max-width: 768px) {
   .card-img{
     height: 300px !important;
-  }
+  }  
 }
