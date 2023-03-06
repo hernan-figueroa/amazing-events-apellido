@@ -82,21 +82,21 @@ function createCards(data) {
     for (const event of data) {
         if (currentDate > event.date) {
             allCards += ` <div class="col">
-                            <div id="card1" class="card h-100">
-                                <img class="card-img" src="${event.image}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">${event.name}</h5>
-                                    <p class="card-text">${event.description}</p>
-                                    <p class="card-text"><small class="text-muted">${event.date}</small></p>
-                                </div>
-                                <div class="card-footer d-inline-flex justify-content-around">
-                                    <div class="d-flex align-items-center">
-                                        <span><i class="bi bi-tag-fill"></i> Price: $${event.price}</span>
-                                    </div>
-                                    <a class="btn btn-pink btn-details text-white" href="./details.html">More info</a>
-                                </div>
-                            </div>
-                    </div>`;
+            <div id="card1" class="card h-100">
+                <img class="card-img" src="${event.image}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${event.name}</h5>
+                    <p class="card-text">${event.description}</p>
+                    <p class="card-text"><small class="text-muted">${event.date}</small></p>
+                </div>
+                <div class="card-footer d-inline-flex justify-content-around">
+                    <div class="d-flex align-items-center">
+                        <span><i class="bi bi-tag-fill"></i> Price: $${event.price}</span>
+                    </div>
+                    <a class="btn btn-pink btn-details text-white" href="./details.html?id=${event._id}">More info </a>
+                </div>
+            </div>
+    </div>`;
         }
     }
     return allCards;

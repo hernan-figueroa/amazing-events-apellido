@@ -93,7 +93,7 @@ function createCards(data) {
                                     <div class="d-flex align-items-center">
                                         <span><i class="bi bi-tag-fill"></i> Price: $${event.price}</span>
                                     </div>
-                                    <a class="btn btn-pink btn-details text-white" href="./details.html">More info</a>
+                                    <a class="btn btn-pink btn-details text-white" href="./details.html?id=${event._id}">More info</a>
                                 </div>
                             </div>
                     </div>`;

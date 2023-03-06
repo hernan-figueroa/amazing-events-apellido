@@ -451,3 +451,4 @@ const data = {
 const allEvents = data.events;
 
 const currentDate = data.currentDate;
+
