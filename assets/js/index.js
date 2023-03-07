@@ -24,7 +24,7 @@ function createCategoriesCheckBox(categories) {
         checkboxsHtml += `<div>
                             <input class="form-check-input" type="checkbox" name="category${num}" id="category${num}" value="${category}">
                             <label for="category${num}">${category}</label>
-                            </div>`
+                        </div>`
         num++;
     }
 
@@ -80,7 +80,7 @@ function createCards(data) {
                                     <div class="d-flex align-items-center">
                                         <span><i class="bi bi-tag-fill"></i> Price: $${event.price}</span>
                                     </div>
-                                    <a class="btn btn-pink btn-details text-white" href="./details.html?id=${event._id}">More info </a>
+                                    <a class="btn btn-pink btn-details text-white" href="./pages/details.html?id=${event._id}">More info </a>
                                 </div>
                             </div>
                     </div>`;
