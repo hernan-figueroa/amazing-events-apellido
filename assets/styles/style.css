@@ -74,6 +74,10 @@ table{
   border: 1px solid white;
 }
 
+.not-found{
+  height: 400px !important;
+}
+
 
 @media screen and (max-width: 768px) {
   .card-img{

@@ -9,16 +9,17 @@ categoriesCheckBox.innerHTML = createCategoriesCheckBox(categoryList(allEvents))
 
 let checkboxs = document.querySelectorAll(".form-check-input");
 
-let cardsFiltered = [];
+let notFound = `<div class="d-flex w-100 align-items-center justify-content-center">
+<img class="not-found" src="../assets/img/not_found.png" alt="logo">
+<div class="col-6"> <span class="inline-flex fs-2 fw-bold">Oops... We couldn’t find anything that matches your search :(</span></div>
+</div>`;
+
 
 categoriesCheckBox.addEventListener("click", function () {
     const wordSearch = document.getElementById("search-content");
     const arrayCategories = checkedCategoriesList(checkboxs);
-    if (arrayCategories.length > 0) {
-        cardsList.innerHTML = (wordSearch.value != "") ? createCards(filterCardsByCategories(arrayCategories, cardsFiltered)) : createCards(filterCardsByCategories(arrayCategories, allEvents))
-    } else {
-        cardsList.innerHTML = (wordSearch.value != "") ? createCards(filterCardsByName(wordSearch.value, allEvents)) : createCards(allEvents);
-    }
+
+    cardsList.innerHTML=createCards(filterCardsByCategoriesAndName(arrayCategories,wordSearch.value));
 })
 
 function createCategoriesCheckBox(categories) {
@@ -28,7 +29,7 @@ function createCategoriesCheckBox(categories) {
         checkboxsHtml += `<div>
                             <input class="form-check-input" type="checkbox" name="category${num}" id="category${num}" value="${category}">
                             <label for="category${num}">${category}</label>
-                            </div>`
+                        </div>`
         num++;
     }
 
@@ -37,9 +38,9 @@ function createCategoriesCheckBox(categories) {
 
 function categoryList(events) {
     let categories = [];
-    for (const event of events) {
-        if (!categories.some((category) => category == event.category)) {
-            categories.push(event.category);
+    for (const item of events) {
+        if (!categories.some((category) => category == item.category)) {
+            categories.push(item.category);
         }
     }
     return categories;
@@ -49,12 +50,7 @@ btnSearch.addEventListener("click", () => {
     const wordSearch = document.getElementById("search-content");
     const arrayCategories = checkedCategoriesList(checkboxs);
 
-    if (wordSearch.value != "") {
-        let filterCards = (arrayCategories.length > 0) ? createCards(filterCardsByName(wordSearch.value, cardsFiltered)) : createCards(filterCardsByName(wordSearch.value, allEvents));
-        cardsList.innerHTML = filterCards;
-    } else {
-        cardsList.innerHTML = (arrayCategories.length > 0) ? createCards(filterCardsByCategories(arrayCategories, allEvents)) : createCards(allEvents);
-    }
+    cardsList.innerHTML=createCards(filterCardsByCategoriesAndName(arrayCategories,wordSearch.value));
 })
 
 function checkedCategoriesList(checkboxs) {
@@ -67,13 +63,9 @@ function checkedCategoriesList(checkboxs) {
     return categories;
 }
 
-function filterCardsByCategories(arrayCategories, events) {
-    cardsFiltered = events.filter(event => arrayCategories.includes(event.category));
-    return cardsFiltered;
-}
-
-function filterCardsByName(name, events) {
-    cardsFiltered = events.filter(event => event.name.toLowerCase().indexOf(name.trim().toLowerCase()) != -1);
+function filterCardsByCategoriesAndName(arrayCategories, wordSearch) {
+    let cardsFiltered = (arrayCategories.length > 0) ? allEvents.filter(event => arrayCategories.includes(event.category)) : allEvents;
+    cardsFiltered = (wordSearch.value != "") ? cardsFiltered.filter(event => event.name.toLowerCase().indexOf(wordSearch.trim().toLowerCase()) != -1) : cardsFiltered;
     return cardsFiltered;
 }
 //Funcion que renderiza en tarjetas cada dato enviado
@@ -99,19 +91,8 @@ function createCards(data) {
                     </div>`;
         }
     }
-    return allCards;
+    return allCards =="" ? (notFound) : allCards;
 
 }
 //Muestra todas las tarjetas al cargar la pagina
 cardsList.innerHTML = createCards(allEvents);
-
-
-
-
-const arrayTest = [{nombre: 'hernan', apellido: 'figueroa'},{nombre: 'fabi', apellido: 'fabi'},{nombre: 'guille', apellido: 'guille'},{nombre: 'hernan', apellido: 'figueroa'}];
-                // 0 1 2 3 4
-
-const resultado = arrayTest.filter((item,index) => arrayTest.indexOf(item) === index);
-                                //item={nombre: 'hernan', apellido: 'figueroa'} index=0   arrayTest.indexOf(item)=0  == index=0
-                                //item=1 index=1   arrayTest.indexOf(item)=0  != index=1
-console.log(resultado);                                

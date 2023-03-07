@@ -9,6 +9,11 @@ categoriesCheckBox.innerHTML = createCategoriesCheckBox(categoryList(allEvents))
 
 let checkboxs = document.querySelectorAll(".form-check-input");
 
+let notFound = `<div class="d-flex w-100 align-items-center justify-content-center">
+<img class="not-found" src="../assets/img/not_found.png" alt="logo">
+<div class="col-6"> <span class="inline-flex fs-2 fw-bold">Oops... We couldn’t find anything that matches your search :(</span></div>
+</div>`;
+
 
 categoriesCheckBox.addEventListener("click", function () {
     const wordSearch = document.getElementById("search-content");
@@ -85,8 +90,11 @@ function createCards(data) {
                             </div>
                     </div>`;
     }
-    return allCards;
+
+    return allCards =="" ? (notFound) : allCards;
 
 }
 //Muestra todas las tarjetas al cargar la pagina
 cardsList.innerHTML = createCards(allEvents);
+
+
