@@ -4,12 +4,38 @@ const params = new URLSearchParams(queryString);
 
 const id = params.get('id');
 
-const eventDetail = allEvents.find(event => event._id == id);
+const urlApi = "https://mindhub-xj03.onrender.com/api/amazing";
+
+let allEvents;
+
+let currentDate;
+
+async function traerDatos() {
+
+    try {
+        const datos = await fetch(urlApi)
+            .then(response => response.json())
+            .then(data => data);
+
+        allEvents = datos.events;
+        currentDate = datos.currentDate;
+        detailsInitializer()
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+traerDatos();
+
+function detailsInitializer() {
+
+    const eventDetail = allEvents.find(event => event._id == id);
 
 
-const detailCard = document.getElementById('detailCard');
+    const detailCard = document.getElementById('detailCard');
 
-card = `<div class="d-flex h-100 flex-md-row flex-column">
+    card = `<div class="d-flex h-100 flex-md-row flex-column">
             <div class="col d-flex justify-content-center">
                 <img id="detail-img" src="${eventDetail.image}" class="img-fluid w-100 rounded-start" alt="...">
             </div>
@@ -40,7 +66,7 @@ card = `<div class="d-flex h-100 flex-md-row flex-column">
                         </div>
                         <div class="d-flex text-center align-items-center justify-content-center card-text col-sm-6 col-12">
                             <i class="bi bi-person-fill-up text-danger fs-1 pe-2"></i>
-                            <span class="col-7"> ${(eventDetail.assistance!=undefined) ? ("Assistance: "): ("Estimate: ")}  ${(eventDetail.assistance!=undefined) ? (eventDetail.assistance): (eventDetail.estimate)}</span>
+                            <span class="col-7"> ${(eventDetail.assistance != undefined) ? ("Assistance: ") : ("Estimate: ")}  ${(eventDetail.assistance != undefined) ? (eventDetail.assistance) : (eventDetail.estimate)}</span>
                         </div>
 
                     </div>
@@ -48,4 +74,6 @@ card = `<div class="d-flex h-100 flex-md-row flex-column">
             </div>
         </div>`
 
-detailCard.innerHTML=card;
+    detailCard.innerHTML = card;
+
+}
