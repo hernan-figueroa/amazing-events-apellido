@@ -94,7 +94,10 @@ table{
   color: white !important;
 }
 
-
+.search-areaDM {
+  background: rgba(17, 11, 11, 0.4) !important;
+  color: white;
+}
 
 @media screen and (max-width: 768px) {
   .card-img{

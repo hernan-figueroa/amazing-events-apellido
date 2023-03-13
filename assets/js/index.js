@@ -98,9 +98,11 @@ function indexInitializer() {
     //Funcion que renderiza en tarjetas cada dato enviado
     function createCards(data) {
         let allCards = "";
+        let modo = (localStorage.getItem("dark-mode")=="true") ? "cardDM" : "a";
+
         for (const event of data) {
             allCards += ` <div class="col">
-                            <div id="card1" class="card h-100">
+                            <div id="card1" class="card h-100 ${modo}">
                                 <img class="card-img" src="${event.image}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">${event.name}</h5>
@@ -127,16 +129,28 @@ function indexInitializer() {
     let darkMode = document.getElementById("darkMode");
     let headerDM = document.getElementById("header");
     let navDM = document.querySelectorAll(".text-dark");
-    let cardDM = document.querySelectorAll(".card")
+    let filtrosDM = document.querySelector(".search-area");
+
+    if(localStorage.getItem("dark-mode")=="true"){
+        darkModeActivated();
+    }
 
     darkMode.addEventListener("click",() => {
+        localStorage.getItem("dark-mode")==null || localStorage.getItem("dark-mode")=="false" ? localStorage.setItem("dark-mode",true): localStorage.setItem("dark-mode",false)
+        darkModeActivated();
+        
+    })
+
+    function darkModeActivated(){
         headerDM.classList.toggle("headerDM");
+        filtrosDM.classList.toggle("search-areaDM")
         for (const item of navDM) {
             item.classList.toggle("navDM");
         }
-        for (const item2 of cardDM) {
-            item2.classList.toggle("cardDM");
-        }
-    })
+        const wordSearch = document.getElementById("search-content");
+        const arrayCategories = checkedCategoriesList(checkboxs);
 
+        cardsList.innerHTML = createCards(filterCardsByCategoriesAndName(arrayCategories, wordSearch.value));
+        
+    }
 }
