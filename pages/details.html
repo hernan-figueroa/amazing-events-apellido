@@ -14,13 +14,13 @@
 </head>
 
 <body class="container-fluid px-0 d-flex flex-column">
-    <header class="d-flex px-5 pt-4">
+    <header class="d-flex px-5 pt-4" id="header">
         <div class="navbar navbar-expand-md w-100 pt-0 pb-3">
             <img src="../assets/img/Logo_Amazing_Events.png" alt="logo" height="40">
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
                 aria-controls="navbarsExample03" aria-expanded="true" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <i class="bi bi-list fs-2" id="menu-dark"></i>
             </button>
             <div class="navbar-collapse collapse justify-content-end" id="navbarsExample03">
                 <ul class="navbar-nav nav-pills mt-3 mt-md-0 mb-2 mb-md-0 text-center">
@@ -39,12 +39,15 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link text-dark" href="./stats.html">Stats</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <button class="btn bi bi-moon-stars-fill " id="darkMode" ></button>
+                    </li>
                 </ul>
             </div>
         </div>
     </header>
     <main
-        class="d-flex vh-min-100 justify-content-center align-items-center p-5 border-top border-4 border-opacity-75 border-danger">
+        class="d-flex vh-min-100 justify-content-center align-items-center p-5 border-top border-4 border-opacity-75 border-danger" id="mainDark">
         <div class="d-flex card col-12 col-lg-10 p-0 details my-5 mb-3" id="detailCard">
 
         </div>
