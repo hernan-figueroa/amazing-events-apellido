@@ -96,10 +96,11 @@ function pastEventsInitializer() {
     //Funcion que renderiza en tarjetas cada dato enviado
     function createCards(data) {
         let allCards = "";
+        let modo = (localStorage.getItem("dark-mode") == "true") ? "cardDM" : "";
         for (const event of data) {
             if (currentDate > event.date) {
                 allCards += ` <div class="col">
-            <div id="card1" class="card h-100">
+            <div id="card1" class="card h-100 ${modo}">
                 <img class="card-img" src="${event.image}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${event.name}</h5>
@@ -121,5 +122,45 @@ function pastEventsInitializer() {
     }
     //Muestra todas las tarjetas al cargar la pagina
     cardsList.innerHTML = createCards(allEvents);
+    let darkMode = document.getElementById("darkMode");
+    let menuDark = document.getElementById("menu-dark");
+    let mainDark = document.getElementById("mainDark");
+    let headerDM = document.getElementById("header");
+    let navDM = document.querySelectorAll(".text-dark");
+    let filtrosDM = document.querySelector(".search-area");
 
+
+    if (localStorage.getItem("dark-mode") == "true") {
+        darkModeActivated();
+    }
+
+    darkMode.addEventListener("click", () => {
+        let darkModeStatus = localStorage.getItem("dark-mode");
+        darkModeStatus == null || darkModeStatus == "false" ? localStorage.setItem("dark-mode", true) : localStorage.setItem("dark-mode", false)
+
+        darkModeActivated(darkModeStatus);
+
+    })
+
+    function darkModeActivated(darkModeStatus) {
+        headerDM.classList.toggle("headerDM");
+        filtrosDM.classList.toggle("search-areaDM");
+        mainDark.classList.toggle("mainDark");
+        for (const item of navDM) {
+            item.classList.toggle("navDM");
+        }
+        if (darkModeStatus == "true") {
+            darkMode.className = "btn bi bi-moon-stars-fill";
+            menuDark.className = "bi bi-list fs-2";
+        } else {
+            darkMode.className = "btn bi bi-brightness-alt-high-fill text-warning";
+            menuDark.className = "bi bi-list fs-2 text-light";
+
+        }
+        const wordSearch = document.getElementById("search-content");
+        const arrayCategories = checkedCategoriesList(checkboxs);
+
+        cardsList.innerHTML = createCards(filterCardsByCategoriesAndName(arrayCategories, wordSearch.value));
+
+    }
 }
