@@ -33,9 +33,9 @@ traerDatos();
 function statsInitializer() {
 
 
-    let sortEventByPercentageOfAttendance = allEvents.filter(e => e.assistance != undefined).sort((a, b) => (a.assistance / a.capacity) - (b.assistance / b.capacity));
+    let sortEventByPercentageOfAttendance = allEvents.filter(e => e.assistance != undefined).sort((a, b) =>  (b.assistance / b.capacity) - (a.assistance / a.capacity));
     let sortEventByPercentageOfEstimate = allEvents.filter(e => e.estimate != undefined).sort((a, b) => (a.estimate / a.capacity) - (b.estimate / b.capacity));
-    let sortEventByCapacity = allEvents.filter(e => e.assistance != undefined).sort((a, b) => a.capacity - b.capacity);
+    let sortEventByCapacity = allEvents.filter(e => e.assistance != undefined).sort((a, b) =>  b.capacity - a.capacity);
 
     let pastArray = [];
     sortEventByPercentageOfAttendance.map(ev => {
@@ -83,35 +83,29 @@ function statsInitializer() {
 
     function eventStaticsShow(eventsAttendance, eventsCapacity) {
         let rows = '';
+        
         rows = `<tr>
                     <td class="bg-secondary">Events with the highest percentage of attendance</td>
                     <td class="bg-secondary">Events with the lowest percentage of attendance</td>
                     <td class="bg-secondary">Event with larger capacity</td>
                 </tr>
-                <tr>
-                    <td>${eventsAttendance[eventsAttendance.length - 1].name} : ${((eventsAttendance[eventsAttendance.length - 1].assistance/eventsAttendance[eventsAttendance.length - 1].capacity)*100).toFixed(2)} %</td >
-                    <td>${eventsAttendance[0].name} : ${((eventsAttendance[0].assistance/eventsAttendance[0].capacity)*100).toFixed(2)} %</td >
-                    <td>${eventsCapacity[eventsCapacity.length - 1].name} : ${eventsCapacity[eventsCapacity.length - 1].capacity}</td >
-                </tr>
-                <tr>
-                    <td>${eventsAttendance[eventsAttendance.length - 2].name} : ${((eventsAttendance[eventsAttendance.length - 2].assistance/eventsAttendance[eventsAttendance.length - 2].capacity)*100).toFixed(2)} %</td >
-                    <td>${eventsAttendance[1].name} : ${((eventsAttendance[1].assistance/eventsAttendance[1].capacity)*100).toFixed(2)} %</td >
-                    <td>${eventsCapacity[eventsCapacity.length - 2].name} : ${eventsCapacity[eventsCapacity.length - 2].capacity}</td >
-                </tr>
-                <tr>
-                    <td>${eventsAttendance[eventsAttendance.length - 3].name} : ${((eventsAttendance[eventsAttendance.length - 3].assistance/eventsAttendance[eventsAttendance.length - 3].capacity)*100).toFixed(2)} %</td >
-                    <td>${eventsAttendance[2].name} : ${((eventsAttendance[2].assistance/eventsAttendance[2].capacity)*100).toFixed(2)} %</td >
-                    <td>${eventsCapacity[eventsCapacity.length - 3].name} : ${eventsCapacity[eventsCapacity.length - 3].capacity}</td >
+                `;
+        for (let i = 0; i < 3; i++) {
+            rows +=`<tr>
+                    <td>${eventsAttendance[i].name} : ${((eventsAttendance[i].assistance/eventsAttendance[i].capacity)*100).toFixed(2)} %</td >
+                    <td>${eventsAttendance[eventsAttendance.length-i-1].name} : ${((eventsAttendance[eventsAttendance.length-i-1].assistance/eventsAttendance[eventsAttendance.length-i-1].capacity)*100).toFixed(2)} %</td >
+                    <td>${eventsCapacity[i].name} : ${eventsCapacity[i].capacity}</td >
                 </tr>`;
+        }   
 
         return rows;
     }
 
     function updateStaticsShow(array){
         let rows = `<tr>
-                        <td>Categories</td>
-                        <td>Revenues</td>
-                        <td>Percentage of estimate</td>
+                        <td class="bg-secondary">Categories</td>
+                        <td class="bg-secondary">Revenues</td>
+                        <td class="bg-secondary">Percentage of estimate</td>
                     </tr>`;
 
         for (const item of array) {
@@ -126,9 +120,9 @@ function statsInitializer() {
 
     function pastStaticsShow(array){
         let rows = `<tr>
-                        <td>Categories</td>
-                        <td>Revenues</td>
-                        <td>Percentage of attendance</td>
+                        <td class="bg-secondary">Categories</td>
+                        <td class="bg-secondary">Revenues</td>
+                        <td class="bg-secondary">Percentage of attendance</td>
                     </tr>`;
 
         for (const item of array) {
