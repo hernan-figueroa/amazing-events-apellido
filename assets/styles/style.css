@@ -110,5 +110,8 @@ table{
 @media screen and (max-width: 768px) {
   .card-img{
     height: 250px !important;
+  }
+  .not-found{
+    height: 200px !important;
   }  
 }

@@ -1,9 +1,5 @@
 const urlApi = "https://mindhub-xj03.onrender.com/api/amazing";
 
-let allEvents;
-
-let currentDate;
-
 async function traerDatos() {
 
     try {
@@ -11,9 +7,9 @@ async function traerDatos() {
             .then(response => response.json())
             .then(data => data);
 
-        allEvents = datos.events;
-        currentDate = datos.currentDate;
-        indexInitializer();
+        let allEvents = datos.events;
+        let currentDate = datos.currentDate;
+        indexInitializer(allEvents, currentDate);
 
     } catch (error) {
         console.log(error);
@@ -22,8 +18,7 @@ async function traerDatos() {
 
 traerDatos();
 
-function indexInitializer() {
-
+function indexInitializer(allEvents, currentDate) {
 
     let cardsList = document.getElementById("cardsList");
 
@@ -35,7 +30,7 @@ function indexInitializer() {
 
     let checkboxs = document.querySelectorAll(".form-check-input");
 
-    let notFound = `<div class="d-flex w-100 align-items-center justify-content-center">
+    let notFound = `<div class="d-flex w-100 align-items-center justify-content-center flex-column">
 <img class="not-found" src="../assets/img/not_found.png" alt="logo">
 <div class="col-6"> <span class="inline-flex fs-2 fw-bold">Oops... We couldn’t find anything that matches your search :(</span></div>
 </div>`;
@@ -125,14 +120,7 @@ function indexInitializer() {
     //Muestra todas las tarjetas al cargar la pagina
     cardsList.innerHTML = createCards(allEvents);
 
-
     let darkMode = document.getElementById("darkMode");
-    let menuDark = document.getElementById("menu-dark");
-    let mainDark = document.getElementById("mainDark");
-    let headerDM = document.getElementById("header");
-    let navDM = document.querySelectorAll(".text-dark");
-    let filtrosDM = document.querySelector(".search-area");
-
 
     if (localStorage.getItem("dark-mode") == "true") {
         darkModeActivated();
@@ -143,10 +131,14 @@ function indexInitializer() {
         darkModeStatus == null || darkModeStatus == "false" ? localStorage.setItem("dark-mode", true) : localStorage.setItem("dark-mode", false)
 
         darkModeActivated(darkModeStatus);
-
     })
 
     function darkModeActivated(darkModeStatus) {
+        let menuDark = document.getElementById("menu-dark");
+        let mainDark = document.getElementById("mainDark");
+        let headerDM = document.getElementById("header");
+        let navDM = document.querySelectorAll(".text-dark");
+        let filtrosDM = document.querySelector(".search-area");
         headerDM.classList.toggle("headerDM");
         filtrosDM.classList.toggle("search-areaDM");
         mainDark.classList.toggle("mainDark");
